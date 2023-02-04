@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    signingConfigs {
+        sign {
+            keyAlias 'Android'
+            keyPassword 'Android'
+            storeFile file('../keystore')
+            storePassword 'Android'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.sys.andbluetoothtether"
+        minSdkVersion 19
+        targetSdkVersion 22
+        versionCode 3
+        versionName "1.2"
+        signingConfig signingConfigs.sign
+    }
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.sign
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.sign
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            if (variant.buildType.name != "debug") {
+//                variant.packageApplication.outputDirectory = new File(project.rootDir.absolutePath + "/app/build/")
+//            }
+//            outputFileName = 'andreportv' + versionName + '.apk'
+//        }
+//    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly 'de.robv.android.xposed:api:82'
+    compileOnly 'de.robv.android.xposed:api:82:sources'
+    implementation files('libs/android_plugin.jar')
+}

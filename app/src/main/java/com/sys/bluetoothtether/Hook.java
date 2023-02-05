@@ -19,6 +19,10 @@ public class Hook implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 
+        if (!lpparam.packageName.equals("com.android.settings")){
+            return;
+        }
+
         Log.e(TAG, "start hook：" + lpparam.packageName);
 
         XposedHelpers.findAndHookMethod(lpparam.classLoader.loadClass(Application.class.getName()), "onCreate", new XC_MethodHook() {

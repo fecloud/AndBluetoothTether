@@ -26,7 +26,7 @@ public class OpenBluetoothTether {
                     while (connect) {
                         openBluetoothShare();
                         try {
-                            Log.d(TAG, "OpenBluetoothTether: Thread.sleep(60 * 1000)");
+                            Log.e(TAG, "OpenBluetoothTether: Thread.sleep(60 * 1000)");
                             Thread.sleep(60 * 1000);
                         } catch (Throwable e) {
 

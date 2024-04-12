@@ -37,6 +37,7 @@ public class Hook implements IXposedHookLoadPackage {
                                 Thread.sleep(5000);
                                 final Application application = AppEngine.getApplication();
                                 new OpenBluetoothTether().init(application);
+                                new OpenUsbTether().init(application);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
